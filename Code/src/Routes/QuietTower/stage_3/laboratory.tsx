@@ -1,17 +1,20 @@
 import labo from "../../../assets/img/labo.png";
 import { useNavigate } from "react-router-dom";
-import { addToInventory, hasTalkedToWorkshopPNJ } from "../../../Game/gameState.ts";
+import {addToInventory, hasItemInInventory, hasTalkedToWorkshopPNJ} from "../../../Game/gameState.ts";
 
 export default function Laboratory() {
     const navigate = useNavigate();
 
     function handleFetchUranium() {
         if (!hasTalkedToWorkshopPNJ()) {
-            alert("Vous ne savez pas pourquoi vous auriez besoin d'uranium. Parlez au PNJ dans l'atelier d'abord !");
+            alert("Pourquoi vous auriez besoin d'uranium ? Chercher une raison valable avant de chercher à en prendre !");
             return;
+        }else if (!hasItemInInventory(2)) {
+            addToInventory({id: 2, name: "Uranium", usable: true}); // Uranium ID: 2
+            alert("Vous avez récupéré de l'uranium !");
+        }else{
+            alert("Vous n'avez pas besoin d'en prendre plus...")
         }
-        addToInventory({ id: 2, name: "Uranium", usable: false }); // Uranium ID: 2
-        alert("Vous avez récupéré de l'uranium !");
     }
 
     function handleGoBack() {

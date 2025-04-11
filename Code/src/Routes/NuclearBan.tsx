@@ -8,7 +8,7 @@ export default function NuclearBan() {
     }
 
     return (
-        <div style={{position:"absolute", flexDirection:"column", alignItems:"center", justifyContent:"center", textAlign: "center", padding: "20px", marginLeft:"21%", top:"35%" }}>
+        <div style={{position:"absolute", flexDirection:"column", alignItems:"center", justifyContent:"center", textAlign: "center", padding: "20px", marginLeft:"21%",marginRight:"21%", top:"35%" }}>
             <h1>🚫 Nucléaire Interdit !</h1>
             <p>
                 L'utilisation de matériaux nucléaires est strictement interdite en Antarctique.

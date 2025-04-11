@@ -1,6 +1,15 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { addToInventory, hasItemInInventory, isWoodTaken, transformWood, isWoodTransformed, setAreFurnitureNeededGS, setHasTalkedToWorkshopPNJ } from "../../../Game/gameState.ts";
+import {
+    addToInventory,
+    hasItemInInventory,
+    isWoodTaken,
+    transformWood,
+    isWoodTransformed,
+    setAreFurnitureNeededGS,
+    setHasTalkedToWorkshopPNJ,
+    isThermostatAddedToRoom, isItemUsable, hasBeenUsed
+} from "../../../Game/gameState.ts";
 import atelierImg from "../../../assets/img/atelier.png";
 import atelierThermostatImg from "../../../assets/img/atelier_thermostat.png";
 import pnj from "../../../assets/img/pnj.png";
@@ -31,8 +40,6 @@ export default function Workshop() {
     function handleGiveUranium() {
         if (uraniumFetched) {
             navigate("/nuclear_ban");
-        } else {
-            alert("Vous n'avez pas encore d'uranium !");
         }
     }
 
@@ -41,11 +48,15 @@ export default function Workshop() {
     }
 
     function handlePNJClick() {
-        if (!uraniumFetched) {
+        if (uraniumFetched&&isItemUsable(2)) {
+            hasBeenUsed(2);
+            alert("Merci pour l'uranium ! Nous allons créer un mini-réacteur.");
+            handleGiveUranium()
+        } else if(uraniumFetched&&!isItemUsable(2)){
+            alert(" !");
+        }else{
             alert("Vous devriez aller chercher de l'uranium dans le laboratoire !");
             setHasTalkedToWorkshopPNJ(true); // Marque que le joueur a parlé au PNJ
-        } else {
-            alert("Merci pour l'uranium ! Nous allons créer un mini-réacteur.");
         }
     }
 
@@ -67,9 +78,10 @@ export default function Workshop() {
                     style={{
                         cursor: "pointer",
                         position: "absolute",
-                        bottom: "20%",
-                        left: "10%",
-                        height: "30%",
+                        bottom: "26%",
+                        left: "22%",
+                        transform: "scaleX(-1)",
+                        height: "35%",
                         zIndex: 1000,
                     }}
                     onClick={handlePNJClick}
@@ -129,24 +141,6 @@ export default function Workshop() {
             >
                 Retour
             </button>
-                {uraniumFetched && (
-                    <button
-                        onClick={handleGiveUranium}
-                        style={{
-                            position: "absolute",
-                            bottom: "10%",
-                            left: "10%",
-                            padding: "10px 20px",
-                            backgroundColor: "#DC3545",
-                            color: "#fff",
-                            border: "none",
-                            borderRadius: "5px",
-                            cursor: "pointer",
-                        }}
-                    >
-                        Donner l'uranium
-                    </button>
-                )}
         </div>
         </>
     );

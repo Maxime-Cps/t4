@@ -1,4 +1,4 @@
-# T4
+# T4 - Dôme C : Projet Rénovation
 
 - **Nom du groupe** : M3SSM0TEAM-V2  
 - **Membres** : Jules Goy, Kilian Sakhi, Maxime Chapuis, Gaëtan Hieber  
@@ -32,7 +32,11 @@ Vous incarnez un architecte envoyé à la station Concordia pour améliorer le c
 
 ## 🛠️ Installation et exécution
 
-Le jeu est disponible à ce lien : [lien_trop_cool.fr](https://lien_trop_cool.fr)
+Le jeu est disponible à ce lien : [Dôme C : Projet Rénovation](https://t4-jn87.vercel.app/)
+
+ℹ️ Recommandation : Pour une immersion optimale, il est fortement conseillé de jouer en plein écran.
+Vous pouvez activer le mode plein écran en appuyant sur F11 ou en cliquant sur le bouton plein écran de votre navigateur.
+Aussi il est recommandé d'avoir un zoom d'écran de 100%.
 
 ---
 
@@ -107,3 +111,10 @@ Chaque problème résolu peut entraîner de nouvelles complications, illustrant 
 - Ajout du camp d'été.
 - Implémentation de shelters spécialisés (physique, sismologie, etc.).
 - Prise en compte des contraintes saisonnières (été/hiver antarctique).
+
+---
+
+## 📚 Sources
+
+ - Antarctica Resolution – 2021 – Giulia Foscari Widmann Rezzonico
+ - Site de [l'Institu polaire français](https://institut-polaire.fr/fr)
