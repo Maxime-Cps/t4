@@ -8,28 +8,8 @@ export default function NoisyTowerStage3() {
         navigate("/base");
     }
 
-    function handleRestart() {
-        navigate("/");
-    }
-
     return (
         <>
-            <button
-                onClick={handleRestart}
-                style={{
-                    position: "absolute",
-                    top: "10px",
-                    left: "55%",
-                    transform: "translateX(-50%)",
-                    padding: "10px 20px",
-                    backgroundColor: "#28A745",
-                    color: "#fff",
-                    border: "none",
-                    borderRadius: "5px",
-                    cursor: "pointer",
-                }}>
-                Menu principal
-            </button>
             <button
                 onClick={handleGoBack}
                 style={{

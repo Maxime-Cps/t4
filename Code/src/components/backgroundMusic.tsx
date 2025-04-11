@@ -12,5 +12,5 @@ export default function BackgroundMusic() {
         }
     }, []);
 
-    return <audio ref={audioRef} src="/assets/sound/background_music.wav" />;
+    return <audio ref={audioRef} src="../assets/sound/background_music.wav" />;
 }

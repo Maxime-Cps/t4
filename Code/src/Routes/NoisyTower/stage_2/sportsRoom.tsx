@@ -10,7 +10,7 @@ import {
     isDialogueSportRoomReaded,
     isSportRoomWindowClosedOnce,
     sportRoomWindowClosed,
-    isSportsRoomFix,
+    isSportsRoomFix, dialogueSportRoomRead,
 } from "../../../Game/gameState.ts";
 import dinnerbone from "../../../assets/img/dinnerbone.png";
 import muscuImg from "../../../assets/img/muscu.png";
@@ -18,13 +18,13 @@ import muscuFermeImg from "../../../assets/img/muscu_ferme.png";
 import pnj from "../../../assets/img/pnj.png";
 
 export default function SportsRoom() {
-    const [isWindowOpen, setIsWindowOpen] = useState(!isThermostatAddedToRoom()); // Fenêtre ouverte si thermostat non placé
+    const [isWindowOpen, setIsWindowOpen] = useState(!isThermostatAddedToRoom());
     const [isThermostatPlaced, setIsThermostatPlaced] = useState(isThermostatAddedToRoom());
-    const [isDialogueReaded,setDialogue] = useState(isDialogueSportRoomReaded());
+    const [isDialogueReaded, setDialogue] = useState(isDialogueSportRoomReaded());
     const navigate = useNavigate();
 
     function handlePlaceThermostat() {
-        if (hasItemInInventory(1)&&isItemUsable(1)) {
+        if (hasItemInInventory(1) && isItemUsable(1)) {
             hasBeenUsed(1);
             addThermostatToRoom();
             setIsThermostatPlaced(true);
@@ -37,14 +37,14 @@ export default function SportsRoom() {
     }
 
     function handleDialogue() {
-        if(isDialogueReaded&&hasItemInInventory(1)&&isItemUsable(1)) {
+        if (isDialogueReaded && hasItemInInventory(1) && isItemUsable(1)) {
             alert("Un thermostat pile quand j'en demande un ? Si on avait su, moi et la team on aurait demandé plus tôt !")
             handlePlaceThermostat();
-        }else if(isThermostatPlaced){
+        } else if (isThermostatPlaced) {
             alert("Encore merci pour ce thermostat, on peux enfin faire du sport sans que le froid extérieur risque de détruire l'équipement !")
-        }else if(isSportRoomWindowClosedOnce()){
+        } else if (isSportRoomWindowClosedOnce()) {
             alert("Tu va pas refermer la fenêtre hein ?");
-        }else {
+        } else {
             alert("Tu veux la machine ? Désolé mais je suis qu'au début de ma série...")
         }
     }
@@ -53,9 +53,15 @@ export default function SportsRoom() {
         if (!isThermostatPlaced) {
             alert("Ne ferme pas la fenêtre, à cause des groupes électrogènes, la chaleur ici est insupportable. Je te laisse imaginer si en plus on fait du sport ! Il faudrait éventuellement un thermostat mais ça ne court pas les rues... Reviens vers moi si tu as une solution.");
             setDialogue(true);
+            dialogueSportRoomRead();
             sportRoomWindowClosed();
             setIsWindowOpen(false); // Ferme temporairement la fenêtre
-            setTimeout(() => setIsWindowOpen(true), 5000); // Réouvre après 5 secondes si le thermostat n'est pas placé
+            setTimeout(() => {
+                // Vérifie si le thermostat n'est toujours pas placé avant de réouvrir la fenêtre
+                if (!isThermostatAddedToRoom()) {
+                    setIsWindowOpen(true); // Réouvre la fenêtre uniquement si le thermostat n'est pas placé
+                }
+            }, 5000);
         }
     }
 
@@ -64,8 +70,7 @@ export default function SportsRoom() {
     }
 
     return (
-
-        <div style={{position: "relative", width: "100vw", height: "100vh", overflow: "hidden"}}>
+        <div style={{ position: "relative", width: "100vw", height: "100vh", overflow: "hidden" }}>
             <img
                 src={isWindowOpen ? muscuImg : muscuFermeImg} // Affiche muscu_ferme.png si thermostat placé
                 alt={isWindowOpen ? "Open Window" : "Closed Window"}
