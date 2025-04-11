@@ -1,10 +1,15 @@
 import { useNavigate } from "react-router-dom";
+import {resetGameState} from "../Game/gameState.ts";
 
 export default function NuclearBan() {
     const navigate = useNavigate();
 
-    function handleGoBack() {
-        navigate("/");
+    function handleRestart() {
+        const isSure = window.confirm("Êtes-vous sûr de vouloir recommencer ?");
+        if (isSure) {
+            resetGameState(); // Réinitialise l'état global
+            navigate("/"); // Redirige vers le menu principal
+        }
     }
 
     return (
@@ -15,7 +20,7 @@ export default function NuclearBan() {
                 La base a reçu une amende de 400 millions d'euros pour cette infraction.
             </p>
             <button
-                onClick={handleGoBack}
+                onClick={handleRestart}
                 style={{
                     marginTop: "20px",
                     padding: "10px 20px",

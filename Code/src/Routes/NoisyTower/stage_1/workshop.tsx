@@ -40,6 +40,7 @@ export default function Workshop() {
     function handleGiveUranium() {
         if (uraniumFetched) {
             navigate("/nuclear_ban");
+
         }
     }
 

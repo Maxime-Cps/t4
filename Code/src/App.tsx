@@ -7,13 +7,13 @@ function App() {
 
     const navigate = useNavigate();
 
-    function handleRestart() {
+     function handleRestart() {
         const isSure = window.confirm("Êtes-vous sûr de vouloir recommencer ?");
         if (isSure) {
             resetGameState(); // Réinitialise l'état global
             navigate("/"); // Redirige vers le menu principal
         }
-    }
+     }
 
     const isSportsRoomFixed = getGameState().isSportsRoomFixed;
     const isBedroomFixed = getGameState().isBedroomFixed;
@@ -36,7 +36,7 @@ function App() {
                 }}>
                 Restart
             </button>
-            <img 
+            <img
                 src={concordiaImg} 
                 alt="concordia" 
                 style={{ 
