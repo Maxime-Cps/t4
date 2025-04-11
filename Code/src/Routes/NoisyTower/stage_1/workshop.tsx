@@ -8,7 +8,7 @@ import {
     isWoodTransformed,
     setAreFurnitureNeededGS,
     setHasTalkedToWorkshopPNJ,
-    isThermostatAddedToRoom, isItemUsable, hasBeenUsed
+    isItemUsable, hasBeenUsed
 } from "../../../Game/gameState.ts";
 import atelierImg from "../../../assets/img/atelier.png";
 import atelierThermostatImg from "../../../assets/img/atelier_thermostat.png";
@@ -53,7 +53,7 @@ export default function Workshop() {
             alert("Merci pour l'uranium ! Nous allons créer un mini-réacteur.");
             handleGiveUranium()
         } else if(uraniumFetched&&!isItemUsable(2)){
-            alert(" !");
+            alert("Vous m'en voulez ? Mais c'est vous qui auriez du me prévenir... ");
         }else{
             alert("Vous devriez aller chercher de l'uranium dans le laboratoire !");
             setHasTalkedToWorkshopPNJ(true); // Marque que le joueur a parlé au PNJ
